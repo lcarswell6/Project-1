@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" type="text/css" href="style.css">
-    <title>BLACKJACK</title>
+    <title>Leon-BLACKJACK</title>
 </head>
 
 <body>
@@ -14,18 +14,47 @@
         <h1>
             BLACKJACK
         </h1>
-        <br>
     </header>
 
-    <div class="buttons">
-        <button id="logIn">Log In</button>
-        <button id="logOut"> Log Out</button>
-        <button id="resetScore">Reset Score</button>
-        <button id="deal">Deal</button>
-        <button id="hit">Hit</button>
-        <button id="stay">Stay</button>
+    <br>
+    <div class="container">
+
+        <div class="buttons">
+            <div id="logInOut">
+                <button id="logIn">Log In</button>
+                <button id="logOut"> Log Out</button>
+            </div>
+        </div>
+        <br>
+        <div id="dealerCards"></div>
+        <br>
+        <div id="gameplay">
+            <button id="hit">Hit</button>
+            <button id="stay">Stay</button>
+        </div>
+        <br>
+        <div id="playerCards"></div>
+        <br>
+        <div id="gameSetup">
+            <button id="deal">Deal</button>
+            <button id="resetHand">New Hand</button>
+            <button id="resetWins">Reset Wins</button>
+        </div>
+
+        <div class="sumDisplay">
+            dealer score: <input type="text" id="dealerScore" value=" "> player score: <input type="text" id="playerScore"
+                value=" ">
+        </div>
+
+        <div class="winsDisplay">
+            dealer wins: <input type="text" id="dealerWins" value=" "> player wins: <input type="text" id="playerWins" value=" ">
+        </div>
     </div>
-    
+
+    <footer>
+
+    </footer>
+
     <script src="blackjack.js"></script>
 </body>
 

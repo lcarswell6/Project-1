@@ -1,0 +1,39 @@
+
+body {
+background-color: #F1F1F6
+}
+
+#logInOut {
+    margin: 0 auto;
+    padding: 15px; 
+    border-color: black;
+    border-width: 2px;
+    
+}
+
+h1 {
+    text-align: center;
+}
+
+.container {
+background-color: green;
+width: 75%;
+margin-left: 12.5%;
+}
+
+#dealerCards {
+margin: 0 auto;
+padding: 1%;
+background-color: #14243C;
+height: 150px;
+border: 10px;
+}
+
+#playerCards {
+    margin: 0 auto;
+    padding: 1%;
+    background-color: red;
+    height: 150px;
+    border: 10px;
+}
+
