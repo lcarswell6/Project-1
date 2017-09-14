@@ -1,6 +1,15 @@
+h1 {
+    text-align: center;
+}
 
 body {
-background-color: #F1F1F6
+    background-color: #8A8A8D
+}
+.container {
+    background-color: green;
+    width: 75%;
+    margin-left: 12.5%;
+    height: 75%;
 }
 
 #logInOut {
@@ -8,25 +17,23 @@ background-color: #F1F1F6
     padding: 15px; 
     border-color: black;
     border-width: 2px;
-    
-}
-
-h1 {
-    text-align: center;
-}
-
-.container {
-background-color: green;
-width: 75%;
-margin-left: 12.5%;
 }
 
 #dealerCards {
-margin: 0 auto;
-padding: 1%;
-background-color: #14243C;
-height: 150px;
-border: 10px;
+    margin: 0 auto;
+    padding: 1%;
+    background-color: #14243C;
+    height: 150px;
+    border: 10px;
+}
+
+#gameplayButtons {
+    text-align: center;
+}
+
+.sumDisplay {
+    text-align: center;
+    margin: 0 auto;
 }
 
 #playerCards {
@@ -37,3 +44,13 @@ border: 10px;
     border: 10px;
 }
 
+#gameSetupButtons {
+    text-align: center;
+}
+
+.winsDisplay {
+    padding: 10px;
+    margin: 0 auto;
+    border: 10px;
+    text-align: center;
+}
