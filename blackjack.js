@@ -62,19 +62,34 @@ console.log(playerHand);
 
 document.getElementById('hitBtn').addEventListener('click', function(){
 hit();
+
+//new player total after each hit 
 playerTotal += playerHand[(playerHand.length - 1)].weight;
 console.log("player total " + playerTotal);
+
+//player BUST
+if (playerTotal > 21){
+alert("player BUST. You lose, loser!")
+}
 }) 
 
 //player stay, dealer hit 
-function hit() {
-    playerHand.push(deck[Math.floor(Math.random() * deck.length)]);
-    console.log(playerHand);
+function stay() {
+    dealerHand.push(deck[Math.floor(Math.random() * deck.length)]);
+    console.log(dealerHand);
 }
     document.getElementById('stayBtn').addEventListener('click', function(){
-    hit();
+    stay();
+    //new dealer total after player stay
     dealerTotal += dealerHand[(dealerHand.length - 1)].weight;
     console.log("dealer total " + dealerTotal);
+
+    //dealer draws until >= 17
+     if (dealerTotal < 17) {
+        stay();
+        } else if (dealerTotal > 21) {
+            alert("dealer BUST.")
+        }
     });
 
 //sum total of player hand
@@ -89,8 +104,6 @@ for ( var i = 0; i < playerHand.length; i++){
 function sumDealerTotal () {
     for ( var i = 0; i < dealerHand.length; i++){
         dealerTotal += dealerHand[i].weight;
-    
         }
-        return dealerTotal;
-    
-    }
+            return dealerTotal;
+}
