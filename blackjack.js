@@ -47,6 +47,10 @@ function deal() {
 
 document.getElementById('dealBtn').addEventListener('click', function(){
 deal();
+sumPlayerTotal();
+sumDealerTotal();
+console.log(playerTotal)
+console.log(dealerTotal)
 })
 
 
@@ -60,11 +64,30 @@ document.getElementById('hitBtn').addEventListener('click', function(){
 hit();
 }) 
 
-//dealer hit 
+//player stay, dealer hit 
 function hit() {
     dealerHand.push(deck[Math.floor(Math.random() * deck.length)]);
-console.log(dealerHand);
+    console.log(dealerHand);
 }
-document.getElementById('stayBtn').addEventListener('click', function(){
+    document.getElementById('stayBtn').addEventListener('click', function(){
     hit();
-})
+    });
+
+//sum total of player hand
+function sumPlayerTotal () {
+for ( var i = 0; i < playerHand.length; i++){
+    playerTotal += playerHand[i].weight;
+    }
+        return playerTotal;
+}
+
+//sum dealer total 
+function sumDealerTotal () {
+    for ( var i = 0; i < dealerHand.length; i++){
+        dealerTotal += dealerHand[i].weight;
+    
+        }
+        return dealerTotal;
+    
+    }
+
