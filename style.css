@@ -21,10 +21,11 @@ body {
 
 #dealerCards {
     margin: 0 auto;
-    padding: 1%;
+    padding: 15px;
+    border: 10px;
     background-color: #14243C;
     height: 150px;
-    border: 10px;
+    
 }
 
 #gameplayButtons {
