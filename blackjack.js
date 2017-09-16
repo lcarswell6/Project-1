@@ -84,15 +84,22 @@ function stay() {
     dealerTotal += dealerHand[(dealerHand.length - 1)].weight;
     console.log("dealer total " + dealerTotal);
 
-    //diable other buttons 
-
 
     //dealer draws until >= 17
      if (dealerTotal < 17) {
         stay();
         } else if (dealerTotal > 21) {
-            alert("YOU WIN! Dealer BUST.")
+            alert("YOU WIN! Dealer BUST.");
         }
+    
+    //who wins on stay?
+    if (dealerTotal > playerTotal && dealerTotal <= 21) {
+        alert("DEALER WINS. You kinda suck bro :(")
+    }    else if (playerTotal > dealerTotal && playerTotal <= 21) {
+        alert("PLAYER WINS! Oh shit!")
+    }   else if (playerTotal === dealerTotal) {
+        alert("PUSH! Try again!");
+    }
      
     });
 
