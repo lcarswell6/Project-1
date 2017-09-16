@@ -69,7 +69,7 @@ console.log("player total " + playerTotal);
 
 //player BUST
 if (playerTotal > 21){
-alert("player BUST. You lose, loser!")
+alert("PLAYER BUST! You lose, friggin' loser!")
 }
 }) 
 
@@ -84,12 +84,16 @@ function stay() {
     dealerTotal += dealerHand[(dealerHand.length - 1)].weight;
     console.log("dealer total " + dealerTotal);
 
+    //diable other buttons 
+
+
     //dealer draws until >= 17
      if (dealerTotal < 17) {
         stay();
         } else if (dealerTotal > 21) {
-            alert("dealer BUST.")
+            alert("YOU WIN! Dealer BUST.")
         }
+     
     });
 
 //sum total of player hand
@@ -107,3 +111,12 @@ function sumDealerTotal () {
         }
             return dealerTotal;
 }
+
+//reset hand with reload button 
+function reloadPage(){
+    window.location.reload();
+ }
+
+ document.getElementById('resetHandBtn').addEventListener('click', function() {
+     reloadPage();
+ });
