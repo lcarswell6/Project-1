@@ -8,9 +8,6 @@ var dealerHand = [];
 var playerTotal = 0;
 var dealerTotal = 0;
 var deck = [];
-
-
-// card variables to build deck
 var suits = ["spades", "diamonds", "clubs", "hearts"];
 var values = ["A", 2, 3, 4, 5, 6, 7, 8, 9, 10 , "J", "Q", "K"];
 
@@ -32,7 +29,8 @@ function createDeck() {
     }
     return deck;
 }
-//dealing cards
+
+//function to deal cards
 function deal() {
     createDeck();
         for (let i = 0; i < 2; i++) {
@@ -44,63 +42,92 @@ function deal() {
         console.log(playerHand);
         console.log(dealerHand);
     };
-
-document.getElementById('dealBtn').addEventListener('click', function(){
-deal();
-sumPlayerTotal();
-sumDealerTotal();
-console.log("player total " + playerTotal)
-console.log("dealer total " + dealerTotal)
-})
-
-
 //player hit new card 
 function hit() {
     playerHand.push(deck[Math.floor(Math.random() * deck.length)]);
 console.log(playerHand);
 }
-
-document.getElementById('hitBtn').addEventListener('click', function(){
-hit();
-
-//new player total after each hit 
-playerTotal += playerHand[(playerHand.length - 1)].weight;
-console.log("player total " + playerTotal);
-
-//player BUST
-if (playerTotal > 21){
-alert("PLAYER BUST! You lose, friggin' loser!")
+//functions to disable buttons
+function disableDealBtn() {
+    document.getElementById('dealBtn').disabled=true;
 }
-}) 
-
+function disableHitBtn() {
+            document.getElementById('hitBtn').disabled = true;
+}
+function disableStayBtn() {
+    document.getElementById('stayBtn').disabled=true;
+}
 //player stay, dealer hit 
 function stay() {
     dealerHand.push(deck[Math.floor(Math.random() * deck.length)]);
     console.log(dealerHand);
 }
-    document.getElementById('stayBtn').addEventListener('click', function(){
-    stay();
-    //new dealer total after player stay
-    dealerTotal += dealerHand[(dealerHand.length - 1)].weight;
-    console.log("dealer total " + dealerTotal);
 
 
-    //dealer draws until >= 17
-     if (dealerTotal < 17) {
-        stay();
-        } else if (dealerTotal > 21) {
-            alert("YOU WIN! Dealer BUST.");
-        }
-    
-    //who wins on stay?
-    if (dealerTotal > playerTotal && dealerTotal <= 21) {
-        alert("DEALER WINS. You kinda suck bro :(")
-    }    else if (playerTotal > dealerTotal && playerTotal <= 21) {
-        alert("PLAYER WINS! Oh shit!")
-    }   else if (playerTotal === dealerTotal) {
-        alert("PUSH! Try again!");
+//player clicks deal and both the player and dealer are dealt 2 cards. the values of each are returned and logged to console.
+//
+document.getElementById('dealBtn').addEventListener('click', function(){
+deal();
+sumPlayerTotal();
+sumDealerTotal();
+console.log("player total " + playerTotal);
+console.log("dealer total " + dealerTotal);
+
+if (playerTotal > 21) {
+    alert("player bust. try again");
+    disableHitBtn();
+    disableStayBtn();
+    disableDealBtn();
+}
+})
+
+//player clicks hit to get another card. player total value is returned and logged to console.
+//after hit is clicked, the deal button is disabled to prevent extra values from being added to player and dealer values 
+//if player total vlaue is > 21, a "loss" alert will pop up    
+document.getElementById('hitBtn').addEventListener('click', function(){
+    hit();
+    disableDealBtn();
+    //new player total after each hit 
+    playerTotal += playerHand[(playerHand.length - 1)].weight;
+        console.log("player total " + playerTotal);
+
+    //player BUST
+    if (playerTotal > 21){
+        disableStayBtn();
+        disableHitBtn();
+        alert("PLAYER BUST! You lose, friggin' loser!")
     }
-     
+}); 
+
+//player clicks stay button to keep his value and force dealer to act.
+//the button click disables the hit and deal buttons to prevent accidental data entry
+//function then checks for inital win possibilties before returning a new dealer value
+//if there is no win condition, dealer draws until a win condition is reached
+document.getElementById('stayBtn').addEventListener('click', function(){
+    disableHitBtn();  
+      disableDealBtn();
+      
+      if (dealerTotal > 21 && playerTotal <= 21) {
+        alert("you win. dealer busts with " + dealerTotal);
+        disableStayBtn();
+      } else if (dealerTotal < 21 && playerTotal < 21 && playerTotal === dealerTotal){
+            alert("PUSH! Try again!");
+            disableStayBtn();
+            } else if (dealerTotal < 17 && playerTotal < 17 && dealerTotal > playerTotal) {
+        alert("dealer wins with " + dealerTotal);
+        disableStayBtn();
+      } else if (dealerTotal < 17 && playerTotal < 17 && dealerTotal < playerTotal) {
+          alert("player wins with " + playerTotal);
+          disableStayBtn();
+      } else if (dealerTotal < 17) {
+          stay();
+      }
+      
+      
+            //new dealer total after stay function runs
+      dealerTotal += dealerHand[(dealerHand.length - 1)].weight;
+        console.log("dealer total " + dealerTotal);
+ 
     });
 
 //sum total of player hand
